@@ -8,7 +8,6 @@ signal box_clicked(box)
 signal box_hovered(box)
 signal unhover(box)
 
-
 func colourCheck():
 	if state == 1:
 		colour = Color(1,0.5,0.5)
@@ -37,17 +36,22 @@ func win(recieved):
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and state == 0 and get_parent().gameover != true:
-		state = get_parent().turn 
-		$AnimatedSprite2D.modulate = Color.WHITE
-		emit_signal("unhover")
-		
-		if state == 1:
-			$AnimatedSprite2D.play("X")
-		if state == 2:
-			$AnimatedSprite2D.play("O")
-		emit_signal("box_clicked",self)
+		if(get_parent().turn==get_parent().yourturn or get_parent().mode == 0):
+			clicked()
+			
 	colourCheck()
 	emit_signal("unhover")
 	emit_signal("box_hovered",self)
+
+func clicked():
+	state = get_parent().turn 
+	$AnimatedSprite2D.modulate = Color.WHITE
+	emit_signal("unhover")
+	
+	if state == 1:
+		$AnimatedSprite2D.play("X")
+	if state == 2:
+		$AnimatedSprite2D.play("O")
+	emit_signal("box_clicked",self)
 	
 		

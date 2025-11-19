@@ -4,11 +4,13 @@ extends Node2D
 @export var boxlength: int = 32
 @export var boxspace: int = 4
 @export var gridspace: int = 12
-@export var hovermode = "adjacent"
 var boxes = {}  # Dictionary: key = Vector4
 
+var mode
+var yourturn 
 var turn = 1
 var gameover = false
+var oppID
 
 func _ready():
 	
@@ -29,6 +31,9 @@ func _ready():
 					var key = box.coord
 					boxes[key] = box
 func _on_box_clicked(box):
+	
+	if(turn == yourturn and mode == 1):
+		send_info.rpc_id(oppID,box.coord)
 	
 	for line in check_possible_lines(box.coord):
 		var states = [] 
@@ -53,17 +58,14 @@ func _on_box_clicked(box):
 		turn = 1
 		$Sprite2D.modulate = Color(1,0.8,0.8)
 		$AnimatedSprite2D.play("X")
+
 func _on_box_hovered(box):
 	var coord = box.coord
 	var neighbors = []
 	for line in check_possible_lines(coord):
 		for point in line:
 			boxes[point].recieve_colour(box.colour)
-		#for cell in boxes:
-			#var neighboring = true
-			#neighboring = check_adjacent(cell,coord)
-			#if neighboring == true: 
-				#neighbors.append(cell)
+
 	
 	for cell in neighbors:
 		boxes[cell].recieve_colour(box.colour)
@@ -92,11 +94,7 @@ func check_possible_lines(coord):
 						if len(current_line) == length:
 							lines.append(current_line)
 	return lines
-	
-func check_linear(cell,coord):
-	var direction = [cell[0]-coord[0],cell[1]-coord[1],cell[2]-coord[2],cell[3]-coord[3]]
-	pass
-								
+						
 func _on_unhover():
 	for cell in boxes:
 		boxes[cell].recieve_colour(Color.WHITE)
@@ -119,3 +117,7 @@ func _on_reset_mouse_entered():
 
 func _on_reset_mouse_exited():
 	$Reset/Sprite2D.modulate = Color.WHITE
+	
+@rpc("any_peer", "call_local", "reliable")
+func send_info(coord):
+	boxes[coord].clicked()
