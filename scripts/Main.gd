@@ -23,7 +23,7 @@ func _open_select():
 	$Client.visible = false
 	$Join.visible = false 
 	tube.leave_session()
-eoujfsda
+
 func _close_select():
 	$Mode.visible = false
 

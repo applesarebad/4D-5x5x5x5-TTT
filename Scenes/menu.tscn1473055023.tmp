@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://te4mayfq1ays"]
+
+[ext_resource type="Script" uid="uid://bgm661bltl3m" path="res://scripts/Main.gd" id="1_cayip"]
+[ext_resource type="Script" uid="uid://cy006uvidc4y" path="res://addons/tube/tube_client.gd" id="2_158mb"]
+[ext_resource type="Resource" uid="uid://bmd1o3ie1l0tr" path="res://new_resource.tres" id="3_wwsa2"]
+[ext_resource type="Theme" uid="uid://cyalgad4tbais" path="res://Fonts/Chalk.tres" id="4_158mb"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_cayip")
+
+[node name="TubeClient" type="Node" parent="."]
+script = ExtResource("2_158mb")
+context = ExtResource("3_wwsa2")
+metadata/_custom_type_script = "uid://cy006uvidc4y"
+
+[node name="Mode" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Single" type="Button" parent="Mode"]
+layout_mode = 0
+offset_left = 834.0
+offset_top = 221.0
+offset_right = 1047.0
+offset_bottom = 304.0
+text = "Single Device"
+
+[node name="Join" type="Button" parent="Mode"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 234.0
+offset_right = 734.0
+offset_bottom = 299.0
+text = "Join Game"
+
+[node name="Create" type="Button" parent="Mode"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 219.0
+offset_right = 367.0
+offset_bottom = 318.0
+text = "Create Game"
+
+[node name="Client" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ID" type="RichTextLabel" parent="Client"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 61.0
+offset_right = 658.0
+offset_bottom = 154.0
+text = "CODE"
+
+[node name="Join" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="Join"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 229.0
+offset_right = 758.0
+offset_bottom = 292.0
+theme = ExtResource("4_158mb")
+placeholder_text = "Enter Code"
+alignment = 1
+max_length = 5
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="Code" type="Button" parent="Join"]
+layout_mode = 0
+offset_left = 485.0
+offset_top = 368.0
+offset_right = 635.0
+offset_bottom = 423.0
+
+[connection signal="pressed" from="Mode/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Mode/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Join/Code" to="." method="_on_code_pressed"]
