@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://te4mayfq1ays"]
 
-[ext_resource type="Script" uid="uid://bgm661bltl3m" path="res://Main.gd" id="1_cayip"]
+[ext_resource type="Script" uid="uid://bgm661bltl3m" path="res://scripts/Main.gd" id="1_cayip"]
 [ext_resource type="Script" uid="uid://cy006uvidc4y" path="res://addons/tube/tube_client.gd" id="2_158mb"]
 [ext_resource type="Resource" uid="uid://bmd1o3ie1l0tr" path="res://new_resource.tres" id="3_wwsa2"]
 [ext_resource type="Theme" uid="uid://cyalgad4tbais" path="res://Fonts/Chalk.tres" id="4_158mb"]
