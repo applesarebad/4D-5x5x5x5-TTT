@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://426t4mm5yvry"]
+[gd_scene load_steps=30 format=3 uid="uid://426t4mm5yvry"]
 
 [ext_resource type="Script" uid="uid://dhiig6qqkm5a5" path="res://scripts/Board.gd" id="1_mmsk8"]
 [ext_resource type="Texture2D" uid="uid://c8r7mhh02upby" path="res://images/Blank.png" id="2_6fauw"]
-[ext_resource type="Texture2D" uid="uid://bvg16ky0wg7gg" path="res://images/pixil-frame-0 (1).png" id="3_84klv"]
+[ext_resource type="Texture2D" uid="uid://csov5a5khobqm" path="res://images/pixil-frame-0 (7).png" id="3_bi01t"]
+[ext_resource type="Theme" uid="uid://cyalgad4tbais" path="res://Fonts/Chalk.tres" id="4_bvs5j"]
 [ext_resource type="Texture2D" uid="uid://det63qxi8sfpu" path="res://images/O/pixil-layer-0.png" id="4_rfmht"]
 [ext_resource type="Texture2D" uid="uid://7evri77k3sdw" path="res://images/O/pixil-layer-1.png" id="5_c1aeb"]
 [ext_resource type="Texture2D" uid="uid://dtj4ibed0lv5c" path="res://images/O/pixil-layer-2.png" id="6_nt3tk"]
@@ -24,9 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://beap8sknnbjwu" path="res://images/X/pixil-layer-8.png" id="22_21ql3"]
 [ext_resource type="Texture2D" uid="uid://clmetmcx37xtj" path="res://images/X/pixil-layer-9.png" id="23_0l25l"]
 [ext_resource type="Texture2D" uid="uid://belaqnuis18od" path="res://images/pixil-frame-0.png" id="24_2y356"]
+[ext_resource type="Texture2D" uid="uid://n613oyhbpyhj" path="res://images/pixil-frame-0 (8).png" id="25_uyaly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dy1o1"]
-size = Vector2(240, 144)
+size = Vector2(385, 179)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xu2m"]
 size = Vector2(960, 952)
@@ -117,20 +119,34 @@ script = ExtResource("1_mmsk8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.784314, 0.784314, 1)
+z_index = -128
 position = Vector2(836, 520)
 scale = Vector2(146.75, 98)
 texture = ExtResource("2_6fauw")
 
 [node name="Reset" type="Area2D" parent="."]
+position = Vector2(-10, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Reset"]
 position = Vector2(1488, 872)
-scale = Vector2(2.0625, 1.78125)
-texture = ExtResource("3_84klv")
+scale = Vector2(3, 3)
+texture = ExtResource("3_bi01t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Reset"]
-position = Vector2(1488, 865)
+position = Vector2(1488.5, 861.5)
 shape = SubResource("RectangleShape2D_dy1o1")
+
+[node name="rematchLabel" type="RichTextLabel" parent="Reset"]
+z_index = -100
+offset_left = 1294.0
+offset_top = 682.0
+offset_right = 1680.0
+offset_bottom = 768.0
+theme = ExtResource("4_bvs5j")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Sending rematch request"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -146,7 +162,6 @@ animation = &"X"
 autoplay = "X"
 
 [node name="wins" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(1504, 480)
 scale = Vector2(2, 2)
 texture = ExtResource("24_2y356")
@@ -154,6 +169,19 @@ texture = ExtResource("24_2y356")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(887, 499)
 zoom = Vector2(0.65, 0.65)
+
+[node name="you" type="Node2D" parent="."]
+position = Vector2(8, 34)
+
+[node name="indicator" type="AnimatedSprite2D" parent="you"]
+position = Vector2(81, 534)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mfxq6")
+autoplay = "X"
+
+[node name="Sprite2D" type="Sprite2D" parent="you"]
+position = Vector2(80, 412)
+texture = ExtResource("25_uyaly")
 
 [connection signal="input_event" from="Reset" to="." method="_on_reset_input_event"]
 [connection signal="mouse_entered" from="Reset" to="." method="_on_reset_mouse_entered"]

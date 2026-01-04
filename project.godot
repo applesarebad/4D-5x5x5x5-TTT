@@ -8,14 +8,29 @@
 
 config_version=5
 
+[GD-Sync]
+
+version="0.13"
+publicKey="9b7bf5cf4b749a67"
+privateKey="9f08e580458c9352"
+protectedMode=true
+
 [application]
 
 config/name="5x5x5x5 TTT"
 run/main_scene="uid://te4mayfq1ays"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.8, 0.8, 1, 1)
+boot_splash/image="uid://c3gtbc53mj8lo"
+config/icon="uid://clmetmcx37xtj"
+
+[autoload]
+
+GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
 
 [display]
 
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
@@ -25,7 +40,7 @@ project/assembly_name="5x5x5x5 TTT"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tube/plugin.cfg")
+enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg")
 
 [rendering]
 

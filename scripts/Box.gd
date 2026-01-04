@@ -4,6 +4,7 @@ var state :int  = 0
 var colour :Color = Color.WHITE 
 var coord :Array = [0,0,0,0]
 
+
 signal box_clicked(box)
 signal box_hovered(box)
 signal unhover(box)
